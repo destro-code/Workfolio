@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  /* Layer 1: Gallery Archival Paper */
+  --wf-gallery-bg: #F3F1EC;
+  --wf-gallery-surface: #FAF9F6;
+  --wf-gallery-ink: #161618;
+  --wf-gallery-muted: #5C5B57;
+  --wf-gallery-border: #DDDAD2;
+
+  /* Layer 2: Studio Workspace (Refined Split-Polarity) */
+  --wf-chrome-bg: #18181B;
+  --wf-chrome-elevated: #202024;
+  --wf-chrome-input: #222227;
+  --wf-chrome-border: #2E2E35;
+  --wf-stage-stone: #E5E2DA;
+  --wf-stage-charcoal: #121214;
+  --wf-ink-primary: #F4F3EF;
+  --wf-ink-secondary: #A1A09A;
+  --wf-ink-muted: #6F6E69;
+  --wf-accent-vermilion: #D94E28;
+  --wf-action-ivory: #F4F3EF;
+  --wf-action-ivory-ink: #161618;
+
+  /* Studio Typography */
+  --wf-font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --wf-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  --wf-font-editorial: 'Playfair Display', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--wf-font-sans);
+  background-color: var(--wf-gallery-bg);
+  color: var(--wf-gallery-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom crisp scrollbars for studio panels */
+.wf-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.wf-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.wf-scroll::-webkit-scrollbar-thumb {
+  background: rgba(161, 160, 154, 0.25);
+  border-radius: 3px;
+}
+.wf-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(161, 160, 154, 0.45);
+}
+
+/* Studio active section outline (strictly outside template tokens) */
+.wf-section-wrapper {
+  position: relative;
+  transition: outline-color 140ms ease;
+}
+
+.wf-section-wrapper[data-studio-interactive="true"] {
+  cursor: pointer;
+}
+
+.wf-section-wrapper[data-studio-interactive="true"]:hover:not([data-studio-selected="true"])::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(217, 78, 40, 0.55);
+  pointer-events: none;
+  z-index: 30;
+}
+
+.wf-section-wrapper[data-studio-selected="true"]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid #D94E28;
+  pointer-events: none;
+  z-index: 31;
+}
+
+/* Wireframe text stroke utility for Noir Collage template */
+.tpl-noir-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--tpl-ink, #F5F5F3);
+}
+
+@media (max-width: 640px) {
+  .tpl-noir-stroke {
+    -webkit-text-stroke: 1px var(--tpl-ink, #F5F5F3);
+  }
+}
+
+/* Balance headlines */
+.tpl-balance {
+  text-wrap: balance;
+}
